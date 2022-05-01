@@ -1,0 +1,19 @@
+<header class="sticky-top">
+  <div class="container-fluid">
+    <nav class="navbar navbar-light bg-white">
+      <a class="navbar-brand">AnimalBook</a>
+      <div *ngIf="$usuario | async as usuario">
+        <div *ngIf="usuario.name; else login" class="">
+          <i class="fa fa-user-circle me-2"></i>
+          <span class="me-2">{{ usuario.name }}</span>
+          <a class="pointer" (click)="logout()">Logout</a>
+        </div>
+      </div>
+      <ng-template #login>
+        <span class="navbar-text">
+          <a routerLink="/">Login</a>
+        </span>
+      </ng-template>
+    </nav>
+  </div>
+</header>
