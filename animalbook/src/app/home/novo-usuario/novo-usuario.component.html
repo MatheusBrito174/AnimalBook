@@ -1,0 +1,43 @@
+<h3 class="text-center">Cadastre-se e mostre seu pet ao mundo!</h3>
+
+<form class="mt-4" [formGroup]="formGroup" (ngSubmit)="cadastrar()">
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="email"
+      placeholder="e-mail"
+      formControlName="email"
+    />
+  </div>
+
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Nome Completo"
+      formControlName="fullName"
+    />
+  </div>
+
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Usuário"
+      formControlName="userName"
+    />
+  </div>
+
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="password"
+      placeholder="Senha"
+      formControlName="password"
+    />
+  </div>
+
+  <button class="btn btn-primary btn-block" type="submit">Cadastrar</button>
+</form>
+
+<p class="mt-2">Já possui cadastro? <a routerLink="">Faça Login!</a></p>
