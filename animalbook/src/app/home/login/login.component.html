@@ -1,11 +1,41 @@
-<form class="mt-4" (ngSubmit)="login()">
+<form class="mt-4" (ngSubmit)="login()" #formulario="ngForm">
   <div class="mb-3">
-    <input type="text" class="form-control" placeholder="Nome do Usuário" name="username" [(ngModel)]="username" />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nome do Usuário"
+      name="username"
+      [(ngModel)]="username"
+      required
+      #campoUsername="ngModel"
+    />
+    <app-mensagem
+      *ngIf="campoUsername.invalid && campoUsername.touched"
+      mensagem="O campo Nome do Usuário é obrigatório"
+    ></app-mensagem>
   </div>
 
   <div class="mb-3">
-    <input type="password" class="form-control" placeholder="Senha" name="password" [(ngModel)]="password" />
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Senha"
+      name="password"
+      [(ngModel)]="password"
+      required
+      #campoPassword="ngModel"
+    />
+    <app-mensagem
+      *ngIf="campoPassword.invalid && campoPassword.touched"
+      mensagem="O campo Senha é obrigatório"
+    ></app-mensagem>
   </div>
 
-  <button type="submit" class="btn btn-primary btn-block">Login</button>
+  <button
+    type="submit"
+    class="btn btn-primary btn-block"
+    [disabled]="formulario.invalid"
+  >
+    Login
+  </button>
 </form>
