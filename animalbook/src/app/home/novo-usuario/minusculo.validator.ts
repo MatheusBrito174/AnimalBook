@@ -1,6 +1,8 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 
-export function minusculoValidator(formControl: AbstractControl) {
+export const minusculoValidator: ValidatorFn = (
+  formControl: AbstractControl
+): ValidationErrors | null => {
   const valor = formControl.value as string;
 
   if (valor === valor.toLowerCase()) {
@@ -10,4 +12,4 @@ export function minusculoValidator(formControl: AbstractControl) {
   return {
     minusculo: true,
   };
-}
+};

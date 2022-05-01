@@ -5,7 +5,6 @@ import {
   AbstractControlOptions,
   FormBuilder,
   FormGroup,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { NovoUsuario } from './novo-usuario';
@@ -27,10 +26,6 @@ export class NovoUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const options: AbstractControlOptions = {
-      validators: [userNamePasswordDiferentes as ValidatorFn],
-    };
-
     this.novoUsuarioForm = this._formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -42,7 +37,9 @@ export class NovoUsuarioComponent implements OnInit {
         ],
         password: ['', [Validators.required]],
       },
-      options
+      {
+        validators: [userNamePasswordDiferentes],
+      }
     );
   }
 
