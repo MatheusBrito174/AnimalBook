@@ -8,11 +8,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class NovoUsuarioService {
-  baseUrl: string = environment.apiBaseUrl;
+  private readonly _baseUrl: string = environment.apiBaseUrl;
 
   constructor(private readonly _http: HttpClient) { }
 
   cadastrar(user: NovoUsuario): Observable<any> {
-    return this._http.post(`${this.baseUrl}/user/signup`, user);
+    return this._http.post(`${this._baseUrl}/user/signup`, user);
+  }
+
+  userNameExiste(userName: string): Observable<any> {
+    return this._http.get(`${this._baseUrl}/user/exists/${userName}`);
   }
 }
