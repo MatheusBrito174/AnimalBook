@@ -10,7 +10,7 @@
       #campoUsername="ngModel"
     />
     <app-mensagem
-      *ngIf="campoUsername.invalid && campoUsername.touched"
+      *ngIf="campoUsername.errors?.['required'] && campoUsername.dirty"
       mensagem="O campo Nome do Usuário é obrigatório"
     ></app-mensagem>
   </div>
@@ -26,7 +26,7 @@
       #campoPassword="ngModel"
     />
     <app-mensagem
-      *ngIf="campoPassword.invalid && campoPassword.touched"
+      *ngIf="campoPassword.errors?.['required'] && campoPassword.dirty"
       mensagem="O campo Senha é obrigatório"
     ></app-mensagem>
   </div>
