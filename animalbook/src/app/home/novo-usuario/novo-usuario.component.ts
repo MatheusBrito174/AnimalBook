@@ -1,14 +1,10 @@
-import { UsernameExisteService } from './username-existe.service';
-import { NovoUsuarioService } from './novo-usuario.service';
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControlOptions,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { NovoUsuario } from './novo-usuario';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { minusculoValidator } from './minusculo.validator';
+import { NovoUsuario } from './novo-usuario';
+import { NovoUsuarioService } from './novo-usuario.service';
+import { UsernameExisteService } from './username-existe.service';
 import { userNamePasswordDiferentes } from './username-password-diferentes.validator';
 
 @Component({
