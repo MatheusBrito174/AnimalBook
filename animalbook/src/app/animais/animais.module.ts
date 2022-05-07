@@ -6,9 +6,10 @@ import { CommonModule } from '@angular/common';
 import { AnimaisRoutingModule } from './animais-routing.module';
 import { AnimalComponent } from './animal/animal.component';
 import { GradeFotosAnimaisComponent } from './grade-fotos-animais/grade-fotos-animais.component';
+import { DetalhesAnimalComponent } from './detalhes-animal/detalhes-animal.component';
 
 @NgModule({
-  declarations: [ListaAnimaisComponent, AnimalComponent, GradeFotosAnimaisComponent],
+  declarations: [ListaAnimaisComponent, AnimalComponent, GradeFotosAnimaisComponent, DetalhesAnimalComponent],
   imports: [
     CommonModule,
     AnimaisRoutingModule,
