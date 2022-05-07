@@ -11,9 +11,13 @@ export class UsuarioService {
   private _usuarioSubject = new BehaviorSubject<Usuario>({});
 
   constructor(private readonly _tokenService: TokenService) {
-    if(this._tokenService.possuiToken()) {
+    if (this._tokenService.possuiToken()) {
       this.decodificarJWT();
     }
+  }
+
+  estaLogado(): boolean {
+    return this._tokenService.possuiToken();
   }
 
   retornarUsuario(): Observable<Usuario> {

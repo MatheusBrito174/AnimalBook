@@ -1,18 +1,21 @@
+import { LoginGuard } from './autenticacao/login.guard';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { Routes } from '@angular/router';
+import { AutenticacaoGuard } from './autenticacao/autenticacao.guard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+    canLoad: [LoginGuard],
   },
   {
     path: 'animais',
     loadChildren: () =>
       import('./animais/animais.module').then((m) => m.AnimaisModule),
+    canLoad: [AutenticacaoGuard],
   },
 ];
 
