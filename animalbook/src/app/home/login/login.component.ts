@@ -1,6 +1,7 @@
 import { AutenticacaoService } from './../../autenticacao/autenticacao.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
   login() {
     this._autenticacaoService
       .autenticar(this.username, this.password)
+      .pipe(take(1))
       .subscribe({
         next: () => this._router.navigateByUrl('animais'),
         error: () => alert('Erro ao autenticar.'),

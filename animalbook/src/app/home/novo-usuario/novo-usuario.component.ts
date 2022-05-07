@@ -1,3 +1,4 @@
+import { take } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -43,9 +44,12 @@ export class NovoUsuarioComponent implements OnInit {
     const novoUsuario: NovoUsuario =
       this.novoUsuarioForm.getRawValue() as NovoUsuario;
 
-    this._novoUsuarioService.cadastrar(novoUsuario).subscribe({
-      next: (value) => console.log(value),
-      error: (error) => console.log(error),
-    });
+    this._novoUsuarioService
+      .cadastrar(novoUsuario)
+      .pipe(take(1))
+      .subscribe({
+        next: (value) => console.log(value),
+        error: (error) => console.log(error),
+      });
   }
 }
