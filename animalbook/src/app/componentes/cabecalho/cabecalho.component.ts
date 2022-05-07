@@ -10,13 +10,13 @@ import { UsuarioService } from './../../autenticacao/usuario/usuario.service';
   styleUrls: ['./cabecalho.component.css'],
 })
 export class CabecalhoComponent implements OnInit {
-  $usuario: Observable<Usuario>;
+  usuario$: Observable<Usuario>;
 
   constructor(
     private readonly _usuarioService: UsuarioService,
     private readonly _router: Router
   ) {
-    this.$usuario = this._usuarioService.retornarUsuario();
+    this.usuario$ = this._usuarioService.retornarUsuario();
   }
 
   ngOnInit(): void {}
