@@ -3,7 +3,7 @@
 </p>
 
 <div class="row">
-  <div class="col-12 col-md-4 col-lg-3 col-xl-2" *ngFor="let animal of animais">
+  <div class="col-12 col-md-4 col-lg-3" *ngFor="let animal of animais">
     <app-cartao>
       <a [routerLink]="['/animais', animal.id]"></a>
       <app-animal
