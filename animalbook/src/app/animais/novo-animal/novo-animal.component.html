@@ -1,0 +1,96 @@
+<div class="container">
+  <form
+    [formGroup]="novoAnimalForm"
+    class="row mt-3"
+    (ngSubmit)="criarAnimal()"
+  >
+    <div class="col-md-6 mb-3 text-center">
+      <app-animal
+        *ngIf="preview; else arquivoControl"
+        [url]="preview"
+      ></app-animal>
+
+      <ng-template #arquivoControl>
+        <div>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="arquivoInput.click()"
+          >
+            <i class="fa fa-image fa-4x"></i>
+          </button>
+
+          <input
+            #arquivoInput
+            type="file"
+            accept="image/*"
+            hidden
+            formControlName="arquivo"
+            (change)="carregarImagem($event)"
+          />
+
+          <app-mensagem
+            *ngIf="novoAnimalForm.get('arquivo')?.errors?.['required']"
+            >Campo obrigatório</app-mensagem
+          >
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <textarea
+          rows="1"
+          class="form-control"
+          formControlName="descricao"
+          placeholder="Descrição"
+        ></textarea>
+
+        <app-mensagem
+          *ngIf="novoAnimalForm.get('descricao')?.errors?.['maxLength']"
+          >Tamanho máximo excedido.</app-mensagem
+        >
+      </div>
+
+      <div class="mb-3">
+        <input
+          id="permite-comentarios"
+          class="form-check-input me-3"
+          type="checkbox"
+          formControlName="permiteComentarios"
+        />
+        <label for="permite-comentarios">Permitir Comentários</label>
+      </div>
+
+      <div class="d-grid gap-2">
+        <button
+          *ngIf="!percentualUpload; else uploadProgress"
+          [disabled]="novoAnimalForm.invalid"
+          type="submit"
+          class="btn btn-primary block"
+        >
+          Enviar
+        </button>
+
+        <ng-template #uploadProgress>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{ width: percentualUpload + '%' }"
+              [attr.aria-valuenow]="percentualUpload"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {{ percentualUpload }} %
+            </div>
+          </div>
+        </ng-template>
+
+        <button type="button" class="btn btn-secondary block" routerLink="">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

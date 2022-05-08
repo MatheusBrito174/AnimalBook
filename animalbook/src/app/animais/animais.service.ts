@@ -1,4 +1,4 @@
-import { HttpClient, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 
@@ -36,5 +36,25 @@ export class AnimaisService {
             : throwError(() => error);
         })
       );
+  }
+
+  upload(
+    arquivo: File,
+    descricao: string,
+    permiteComentarios: boolean
+  ): Observable<HttpEvent<Object>> {
+    const formData = new FormData();
+    formData.append('imageFile', arquivo);
+    formData.append('description', descricao);
+    formData.append('allowComments', permiteComentarios ? 'true' : 'false');
+
+    return this._http.post<HttpEvent<Object>>(
+      `${this._baseUrl}/photos/upload`,
+      formData,
+      {
+        observe: 'events',
+        reportProgress: true,
+      }
+    );
   }
 }
