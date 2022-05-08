@@ -9,7 +9,7 @@
       </div>
 
       <div class="col-md-4">
-        <small>
+        <div class="mb-3">
           <i
             aria-hidden="true"
             class="fa fa-heart-o fa-1x mr-2"
@@ -21,7 +21,16 @@
             {{ animal.comments }}
           </i>
           <i class="fa fa-trash-o fa-2x pull-right" (click)="excluir()"></i>
-        </small>
+        </div>
+
+        <app-comentarios
+          *ngIf="animal.allowComments; else warning"
+          [animalId]="animal.id"
+        ></app-comentarios>
+
+        <ng-template #warning>
+          <p class="text-center text-muted">Comentários desativados.</p>
+        </ng-template>
       </div>
     </div>
   </div>
